@@ -19,3 +19,23 @@ export const get_registry = async () => {
         console.log(error);
     }
 }
+
+export const delete_registry = async (movieID) => {
+    try {
+        const response = await axios.post(`/eliminarPelicula`, movieID);
+        return response
+    }
+    catch(error) {
+        console.error("ERROR => ", error)
+    }
+};
+
+export const modify_registry = async (movieAttr) => {
+    try {
+        const response = await axios.post(`/modifyMovie`, movieAttr);
+        return response
+    }
+    catch(error) {
+        console.error("ERROR => ", error)
+    }
+};
