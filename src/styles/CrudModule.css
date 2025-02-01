@@ -27,9 +27,15 @@
     height: 2rem;
     color: white;
     background-color: rgb(27, 27, 27);
-    border: 0.1rem solid black;
+    border: 0.1rem solid rgb(88, 88, 88);
     padding: 0.5rem;
     border-radius: 0.5rem;
+    transition: border-color 0.2s ease-in-out ;
+}
+
+.crud__inputs>input:hover {
+    border-color: #EEDF7A;
+    
 }
 
 .crud__options {
@@ -42,11 +48,12 @@
 .crud__options>button {
     color: white;
     background-color: rgb(27, 27, 27);
-    border: 0.1rem solid black;
+    border: 0.1rem solid rgb(88, 88, 88);
     padding: 0.5rem;
     border-radius: 0.3rem;
     cursor: pointer;
 }
+
 .table__container {
     width: 100%;
 }

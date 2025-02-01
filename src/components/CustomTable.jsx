@@ -25,8 +25,8 @@ export const CustomTable = ({data, edit}) => {
             <table>
                 <thead>
                     <tr>
-                        {rows_header.map((header_name) => (
-                            <th key={header_name}>
+                        {rows_header.map((header_name, index) => (
+                            <th key={header_name} className={index === 1 ? 'second-column' : ''}>
                                 {header_name.charAt(0).toUpperCase() + header_name.slice(1)}
                             </th>
                         ))}
@@ -39,7 +39,7 @@ export const CustomTable = ({data, edit}) => {
                     {data.map((row, index) => (
                         <tr key={index}>
                             {rows_header.map ((header) => (
-                                <td key={header}>
+                                <td key={header} className={header === "titulo" ? 'second-column' : ''}>
                                     {row[header]}
                                 </td>
                             ))}

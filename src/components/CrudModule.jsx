@@ -9,9 +9,10 @@ export default function CrudModule() {
         const fetchData = async () => {
             const response = await get_registry();
             if (response) {
-                //console.log(response)
+                console.log(response)
                 setActualData(response);
             } else {
+                
                 console.error("No data received from get_registry()");
             }
         };
@@ -19,7 +20,17 @@ export default function CrudModule() {
         fetchData();
     }, []);
     const [id, setId] = useState(0)
-    const [actualData, setActualData] = useState([])
+    const [actualData, setActualData] = useState([{
+        peliculaID: 0, 
+        titulo: 'No data', 
+        director: 'No data', 
+        idioma: 'No data',
+        edadRequerida: 0,
+        duracionMin: 0,
+        fechaEstreno: '1991-01-01',
+        genero: "No data",
+
+    }])
     const [director, setDirector] = useState("");
     const [runningTime, setRunningTime] = useState(0);
     const [mpaAge, setMpaAge] = useState(0);
@@ -37,6 +48,7 @@ export default function CrudModule() {
         setGenre("");
         setRunningTime(0);
         setMpaAge(0);
+        setFlag(false);
     }
 
     const set_form = (data) => {
@@ -49,9 +61,12 @@ export default function CrudModule() {
         setRunningTime(data.duracionMin);
         setMpaAge(data.edadRequerida);
         setFlag(true);
+
+        
+
     }
 
-    const handleModifyMovie = () => {
+    const handleModifyMovie = async () => {
         const movie = {
             id: id,
             title: title,
@@ -63,14 +78,15 @@ export default function CrudModule() {
             mpaAge: mpaAge,
         }
         console.log(movie)
-        const request_response = modify_registry(movie);
+        const request_response = await modify_registry(movie);
         if (request_response.status === 200) {
             alert("The movie has been successfully modified!");
+            setFlag(false);
             clean_form();
         }
     }
 
-    const add_movie = () => {
+    const add_movie = async () => {
         const movie = {
             title: title,
             language: language,
@@ -82,7 +98,7 @@ export default function CrudModule() {
         }
 
         if (inputs_validation()) {
-            const request_reponse = create_registry(movie);
+            const request_reponse = await create_registry(movie);
             if (request_reponse.status === 200) {
                 alert("The movie has been successfully registered!");
                 clean_form();
@@ -102,22 +118,26 @@ export default function CrudModule() {
         <div className='crud__container'>
             <div className='crud__form'>
                 <div className='crud__inputs'>
-                <input 
+                <input
+                    id="title" 
                     placeholder='Title' 
                     value={title} 
                     onChange={(e) => setTitle(e.target.value)} 
                 />
                 <input 
+                    id="director"
                     placeholder='Director' 
                     value={director} 
                     onChange={(e) => setDirector(e.target.value)} 
                 />
                 <input 
+                    id="language"
                     placeholder='Language' 
                     value={language} 
                     onChange={(e) => setLanguage(e.target.value)} 
                 />
                 <input
+                    id="mpaAge"
                     type ="number" 
                     placeholder='Min age' 
                     value={mpaAge} 
@@ -125,17 +145,20 @@ export default function CrudModule() {
                     min="0"
                 />
                 <input
+                    id="release_date"
                     type="date" 
                     placeholder='Release date' 
                     value={releaseDate} 
                     onChange={(e) => setReleaseDate(e.target.value)} 
                 />
                 <input 
+                    id="genre"
                     placeholder='Genre' 
                     value={genre} 
                     onChange={(e) => setGenre(e.target.value)} 
                 />
                 <input 
+                    id="runningTime"
                     type="number"
                     placeholder='Min duration' 
                     value={runningTime} 
@@ -144,7 +167,7 @@ export default function CrudModule() {
                 </div>
                 <div className='crud__options'>
                     {!flag && (
-                        <button onClick={add_movie}>ADD</button>
+                        <button onClick={add_movie}>Add</button>
                     )}
                     {flag && (
                         <button onClick={() => handleModifyMovie()}>Edit</button>
