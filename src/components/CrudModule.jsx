@@ -1,6 +1,7 @@
 import '../styles/CrudModule.css';
 import { get_registry, create_registry , modify_registry} from '../services/crud_services';
 import { CustomTable } from './CustomTable';
+import Filters from './Filters';
 
 import { useState, useEffect } from 'react';
 
@@ -175,7 +176,8 @@ export default function CrudModule() {
                     <button onClick={clean_form}>Refresh</button>
                 </div>
             </div>
-            <div className='table__container'>
+            <div className='movies__container'>
+                <Filters setData={setActualData}/>
                 <CustomTable data={actualData} edit={set_form}/>
             </div>
         </div>

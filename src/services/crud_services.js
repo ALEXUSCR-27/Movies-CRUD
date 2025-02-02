@@ -39,3 +39,13 @@ export const modify_registry = async (movieAttr) => {
         console.error("ERROR => ", error)
     }
 };
+
+export const filter_registry = async (movieAttr) => {
+    try {
+        const response = await axios.post(`/buscarpeliculas`, movieAttr);
+        return response
+    }
+    catch(error) {
+        console.error("ERROR => ", error)
+    }
+};
