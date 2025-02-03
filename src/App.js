@@ -10,7 +10,6 @@ function App() {
         <Routes>
             <Route exact path='/' element={<Home/>}/>
             <Route exact path='/crud' element={<CreateModule/>}/>
-
         </Routes>
     </BrowserRouter>
   );
