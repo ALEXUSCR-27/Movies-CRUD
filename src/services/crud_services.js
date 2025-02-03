@@ -1,5 +1,6 @@
 import axios from "./axios"
 
+// Funtion to use axios services to add a new movie
 export const create_registry = async (movie_attr) => {
     try{
         const response = await axios.post(`/create_registry`, movie_attr);
@@ -10,6 +11,7 @@ export const create_registry = async (movie_attr) => {
     }
 }
 
+// Function to use axios services to get all the movies in db
 export const get_registry = async () => {
     try {
         const response = await axios.post(`/get_registry`, {});
@@ -20,9 +22,10 @@ export const get_registry = async () => {
     }
 }
 
+// Function to use axios services to delete a movie
 export const delete_registry = async (movieID) => {
     try {
-        const response = await axios.post(`/eliminarPelicula`, movieID);
+        const response = await axios.post(`/delete_registry`, movieID);
         return response
     }
     catch(error) {
@@ -30,9 +33,10 @@ export const delete_registry = async (movieID) => {
     }
 };
 
+// Function to use axios services to modify a movie
 export const modify_registry = async (movieAttr) => {
     try {
-        const response = await axios.post(`/modifyMovie`, movieAttr);
+        const response = await axios.post(`/modify_registry`, movieAttr);
         return response
     }
     catch(error) {
@@ -40,9 +44,10 @@ export const modify_registry = async (movieAttr) => {
     }
 };
 
+// Function to use axios services to filter movies by attributes
 export const filter_registry = async (movieAttr) => {
     try {
-        const response = await axios.post(`/buscarpeliculas`, movieAttr);
+        const response = await axios.post(`/filter_registry`, movieAttr);
         return response
     }
     catch(error) {

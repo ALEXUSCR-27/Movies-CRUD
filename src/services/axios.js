@@ -7,8 +7,7 @@ const axiosService = axios.create({
         'Content-Type': 'application/json',
     },
 });
-
-// Utilizado si se necesita realizar algo antes de enviar la solicitud al servidor
+// axios request interceptor
 axiosService.interceptors.request.use(
     (config) => {
         return config;
@@ -16,7 +15,7 @@ axiosService.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
-// Utilizado para trabajar los datos después de recibir la respuesta del servidor
+// axios resopnse interceptor
 axiosService.interceptors.response.use (
     (response) => {
         return response;

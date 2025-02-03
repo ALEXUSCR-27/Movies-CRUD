@@ -10,10 +10,8 @@ export default function CrudModule() {
         const fetchData = async () => {
             const response = await get_registry();
             if (response) {
-                console.log(response)
                 setActualData(response);
             } else {
-                
                 console.error("No data received from get_registry()");
             }
         };
@@ -31,7 +29,8 @@ export default function CrudModule() {
         fechaEstreno: '1991-01-01',
         genero: "No data",
 
-    }])
+    }]);
+
     const [director, setDirector] = useState("");
     const [runningTime, setRunningTime] = useState(0);
     const [mpaAge, setMpaAge] = useState(0);
@@ -62,9 +61,6 @@ export default function CrudModule() {
         setRunningTime(data.duracionMin);
         setMpaAge(data.edadRequerida);
         setFlag(true);
-
-        
-
     }
 
     const handleModifyMovie = async () => {
@@ -78,7 +74,6 @@ export default function CrudModule() {
             runningTime: runningTime,
             mpaAge: mpaAge,
         }
-        console.log(movie)
         const request_response = await modify_registry(movie);
         if (request_response.status === 200) {
             alert("The movie has been successfully modified!");
