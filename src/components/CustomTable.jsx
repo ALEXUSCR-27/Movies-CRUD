@@ -4,14 +4,23 @@ import { delete_registry } from "../services/crud_services";
 
 export const CustomTable = ({data, edit}) => {
     if (!data || data.length === 0) {
-        return <div>No data available</div>;
+        data = [{
+            movieID: 0, 
+            title: 'No data', 
+            director: 'No data', 
+            language: 'No data',
+            mpa_age: 0,
+            running_time: 0,
+            release_date: '1991-01-01',
+            genre: "No data",
+        }]
     }
     const rows_header = Object.keys(data[0])
 
     const handleRowDelete = async (row) => {
         console.log(row)
         const movieID = {
-            peliculaID:row
+            movieID:row
         }
         const request_reponse = await delete_registry(movieID);
         if (request_reponse.status === 200) {
@@ -39,13 +48,13 @@ export const CustomTable = ({data, edit}) => {
                     {data.map((row, index) => (
                         <tr key={index}>
                             {rows_header.map ((header) => (
-                                <td key={header} className={header === "titulo" ? 'second-column' : ''}>
+                                <td key={header} className={header === "title" ? 'second-column' : ''}>
                                     {row[header]}
                                 </td>
                             ))}
                             <td>
                                 <button onClick={() => edit(row)}>Edit</button>
-                                <button onClick={() => handleRowDelete(row["peliculaID"])}>Delete</button>
+                                <button onClick={() => handleRowDelete(row["movieID"])}>Delete</button>
                             </td>
                         </tr>
                     ))}

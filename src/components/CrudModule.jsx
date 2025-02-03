@@ -19,17 +19,7 @@ export default function CrudModule() {
         fetchData();
     }, []);
     const [id, setId] = useState(0)
-    const [actualData, setActualData] = useState([{
-        peliculaID: 0, 
-        titulo: 'No data', 
-        director: 'No data', 
-        idioma: 'No data',
-        edadRequerida: 0,
-        duracionMin: 0,
-        fechaEstreno: '1991-01-01',
-        genero: "No data",
-
-    }]);
+    const [actualData, setActualData] = useState([]);
 
     const [director, setDirector] = useState("");
     const [runningTime, setRunningTime] = useState(0);
@@ -52,14 +42,14 @@ export default function CrudModule() {
     }
 
     const set_form = (data) => {
-        setId(data.peliculaID)
-        setTitle(data.titulo);
+        setId(data.movieID)
+        setTitle(data.title);
         setDirector(data.director);
-        setLanguage(data.idioma);
-        setReleaseDate(data.fechaEstreno);
-        setGenre(data.genero);
-        setRunningTime(data.duracionMin);
-        setMpaAge(data.edadRequerida);
+        setLanguage(data.language);
+        setReleaseDate(data.releaseDate);
+        setGenre(data.genre);
+        setRunningTime(data.durationMin);
+        setMpaAge(data.ageRequired);
         setFlag(true);
     }
 

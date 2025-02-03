@@ -15,7 +15,7 @@ axiosService.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
-// axios resopnse interceptor
+// axios response interceptor
 axiosService.interceptors.response.use (
     (response) => {
         return response;
