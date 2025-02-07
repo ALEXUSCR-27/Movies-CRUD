@@ -10,7 +10,7 @@ export default function Filters({setData}) {
     const [language, setLanguage] = useState("");
     const [title, setTitle] = useState("");
 
-    const handleModifyMovie = async () => {
+    const handleFilterSearch = async () => {
         const movie = {
             title: title,
             language: language,
@@ -21,6 +21,7 @@ export default function Filters({setData}) {
         const request_response = await filter_registry(movie);
         if (request_response.status === 200) {
             setData(request_response.data)
+            clean_form();
         }
     }
 
@@ -84,7 +85,7 @@ export default function Filters({setData}) {
                 </div>
             </div>
             <div className='options__container'>
-                <button onClick={() => handleModifyMovie()}>Search</button>
+                <button onClick={() => handleFilterSearch()}>Search</button>
                 <button onClick={() => clean_form()}>Refresh</button>
             </div>
 
